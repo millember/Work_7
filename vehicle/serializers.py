@@ -5,6 +5,7 @@ from rest_framework.exceptions import ValidationError
 
 from vehicle import validators
 from vehicle.models import Car, Moto, Milage
+from vehicle.services import convert_currencies
 from vehicle.validators import TitleValidator
 
 
@@ -17,10 +18,14 @@ class MilageSerializers(serializers.ModelSerializer):
 class CarSerializers(serializers.ModelSerializer):
     last_milage = serializers.IntegerField(source='milage.all.first.milage', read_only=True)
     milage = MilageSerializers(many=True, read_only=True)
+    usd_price = serializers.SerializerMethodField()
 
     class Meta:
         model = Car
         fields = '__all__'
+
+    def get_usd_price(self, instance):
+        return convert_currencies(instance.amount)
 
 
 class MotoSerializers(serializers.ModelSerializer):
