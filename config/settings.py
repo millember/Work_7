@@ -153,3 +153,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 CUR_API_URL = 'https://api.currencyapi.com/'
 CUR_API_KEY = 'cur_live_oMgjreFZgNKLfm2nM9o8Irj3nKznRAr7jmdqqA1U'
+
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
