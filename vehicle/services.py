@@ -12,3 +12,5 @@ def convert_currencies(rub_price):
         usd_rate = response.json()['data']['RUB']['value']
         usd_price = rub_price * usd_rate
     return usd_price
+
+
